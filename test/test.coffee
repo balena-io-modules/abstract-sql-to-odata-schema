@@ -48,17 +48,7 @@ module.exports = exports = (builtInVocab = false) ->
 			else if _.isError(result)
 				throw result
 			else
-				# require('fs').writeFileSync('./client-model.json', JSON.stringify(result, null, '\t'))
 				expect(result).to.deep.equal(expectation)
-				# it 'should have a resources property', ->
-					# expect(result).to.have.property('resources')
-				# it 'and a resourceToSQLMappings property', ->
-					# expect(result).to.have.property('resourceToSQLMappings')
-				# # Individually match the statements in order to get a nicer diff if they don't match.
-				# keys = _.uniq _.concat(_.keys(result.resources), _.keys(expectation))
-				# for key in keys
-					# it "expect '#{key}' to match", ->
-						# expect(result.resources[key]).to.deep.equal(expectation[key])
 
 	ret = runSchema.bind(null, describe)
 	ret.skip = runSchema.bind(null, describe.skip)
