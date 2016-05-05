@@ -6,7 +6,7 @@ getField = (table, fieldName) ->
 	for tableField in tableFields when tableField.fieldName == fieldName
 		return tableField
 	console.error('Cannot find field', table, fieldName)
-	throw 'Cannot find field: ' + table.name + ' : ' + fieldName
+	throw new Error('Cannot find field: ' + table.name + ' : ' + fieldName)
 
 module.exports = (sqlModel) ->
 	tables = sqlModel.tables
@@ -67,7 +67,7 @@ module.exports = (sqlModel) ->
 					resources[resourceName].fields.push(getField(sqlTable, sqlFieldName))
 					resources[resourceName].referenceScheme = resourceField
 				else
-					throw 'Unrecognised table type'
+					throw new Error('Unrecognised table type')
 		else
 			resourceToSQLMappings[resourceName]._name = table.name
 			resources[resourceName] =
@@ -79,6 +79,6 @@ module.exports = (sqlModel) ->
 				actions: ['view', 'add', 'edit', 'delete']
 			if table.referenceScheme?
 				resources[resourceName].referenceScheme = table.referenceScheme
-			for {fieldName} in table.fields
+			for { fieldName } in table.fields
 				addMapping(resourceName, fieldName.replace(/\ /g, '_'), table.name, fieldName)
-	return {resources, resourceToSQLMappings}
+	return { resources, resourceToSQLMappings }

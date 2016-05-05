@@ -4,9 +4,10 @@
   "description": "A translator for abstract sql into an odata schema.",
   "main": "AbstractSQL2ODataSchema.js",
   "scripts": {
-    "pretest": "npm run-script prepublish",
-    "test": "./node_modules/.bin/mocha",
-    "prepublish": "./node_modules/.bin/coffee -c AbstractSQL2ODataSchema.coffee"
+    "lint": "resin-lint AbstractSQL2ODataSchema.coffee",
+    "pretest": "npm run lint && npm run prepublish",
+    "test": "mocha",
+    "prepublish": "coffee -c AbstractSQL2ODataSchema.coffee"
   },
   "repository": "git@bitbucket.org:rulemotion/abstract-sql-compiler.git",
   "author": "",
@@ -20,6 +21,7 @@
     "@resin/sbvr-types": "^1.1.1",
     "chai": "^3.0.0",
     "coffee-script": "~1.10.0",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "resin-lint": "^1.2.2"
   }
 }
