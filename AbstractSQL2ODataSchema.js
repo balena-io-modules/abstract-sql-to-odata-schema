@@ -15,7 +15,7 @@
       }
     }
     console.error('Cannot find field', table, fieldName);
-    throw 'Cannot find field: ' + table.name + ' : ' + fieldName;
+    throw new Error('Cannot find field: ' + table.name + ' : ' + fieldName);
   };
 
   module.exports = function(sqlModel) {
@@ -98,7 +98,7 @@
             resources[resourceName].referenceScheme = resourceField;
             break;
           default:
-            throw 'Unrecognised table type';
+            throw new Error('Unrecognised table type');
         }
       } else {
         resourceToSQLMappings[resourceName]._name = table.name;
