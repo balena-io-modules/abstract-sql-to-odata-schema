@@ -30,7 +30,10 @@ describe 'pilots', ->
 		Fact type:  plane has name
 			Necessity: each plane has exactly one name
 
+		Term:      person
+
 		Term:       pilot
+			Concept Type: person
 
 		Fact type:  pilot is experienced
 
@@ -278,6 +281,37 @@ describe 'pilots', ->
 					"delete"
 				]
 			},
+			"person": {
+				"resourceName": "person",
+				"modelName": "person",
+				"topLevel": true,
+				"fields": [
+					{
+						"dataType": "Date Time",
+						"fieldName": "created at",
+						"required": true,
+						"index": null,
+						"references": null,
+						"defaultValue": "CURRENT_TIMESTAMP"
+					},
+					{
+						"dataType": "Serial",
+						"fieldName": "id",
+						"required": true,
+						"index": "PRIMARY KEY",
+						"references": null,
+						"defaultValue": null
+					}
+				],
+				"idField": "id",
+				"referenceScheme": "id",
+				"actions": [
+					"view",
+					"add",
+					"edit",
+					"delete"
+				]
+			},
 			"pilot": {
 				"resourceName": "pilot",
 				"modelName": "pilot",
@@ -297,6 +331,17 @@ describe 'pilots', ->
 						"required": true,
 						"index": "PRIMARY KEY",
 						"references": null,
+						"defaultValue": null
+					},
+					{
+						"dataType": "ConceptType",
+						"fieldName": "person",
+						"required": true,
+						"index": null,
+						"references": {
+							"tableName": "person",
+							"fieldName": "id"
+						},
 						"defaultValue": null
 					},
 					{
@@ -753,6 +798,17 @@ describe 'pilots', ->
 					"name"
 				]
 			},
+			"person": {
+				"_name": "person",
+				"created_at": [
+					"person",
+					"created at"
+				],
+				"id": [
+					"person",
+					"id"
+				]
+			},
 			"pilot": {
 				"_name": "pilot",
 				"created_at": [
@@ -762,6 +818,10 @@ describe 'pilots', ->
 				"id": [
 					"pilot",
 					"id"
+				],
+				"person": [
+					"pilot",
+					"person"
 				],
 				"is_experienced": [
 					"pilot",
