@@ -56,6 +56,10 @@ describe 'pilots', ->
 
 		Fact type:  pilot has hire date
 			Necessity: each pilot has exactly one hire date
+
+		Fact type:  pilot1 was trained by pilot2
+			Synonymous Form: pilot2 trained pilot1
+			Necessity: each pilot was trained by exactly one pilot
 	''', {
 		"resources": {
 			"licence": {
@@ -417,6 +421,17 @@ describe 'pilots', ->
 							"fieldName": null
 						},
 						"defaultValue": null
+					},
+					{
+						"dataType": "ForeignKey",
+						"fieldName": "pilot",
+						"required": true,
+						"index": null,
+						"references": {
+							"tableName": "pilot",
+							"fieldName": "id"
+						},
+						"defaultValue": null
 					}
 				],
 				"idField": "id",
@@ -721,6 +736,41 @@ describe 'pilots', ->
 					"add",
 					"delete"
 				]
+			},
+			"pilot__was_trained_by__pilot": {
+				"resourceName": "pilot__was_trained_by__pilot",
+				"modelName": "pilot was trained by pilot",
+				"topLevel": false,
+				"fields": [
+					{
+						"dataType": "ForeignKey",
+						"fieldName": "pilot",
+						"required": true,
+						"index": null,
+						"references": {
+							"tableName": "pilot",
+							"fieldName": "id"
+						}
+					},
+					{
+						"dataType": "ForeignKey",
+						"fieldName": "pilot",
+						"required": true,
+						"index": null,
+						"references": {
+							"tableName": "pilot",
+							"fieldName": "id"
+						},
+						"defaultValue": null
+					}
+				],
+				"idField": "pilot",
+				"referenceScheme": "pilot",
+				"actions": [
+					"view",
+					"add",
+					"delete"
+				]
 			}
 		},
 		"resourceToSQLMappings": {
@@ -850,6 +900,10 @@ describe 'pilots', ->
 				"hire_date": [
 					"pilot",
 					"hire date"
+				],
+				"pilot": [
+					"pilot",
+					"pilot"
 				]
 			},
 			"pilot__is_experienced": {
@@ -946,6 +1000,13 @@ describe 'pilots', ->
 				"hire date": [
 					"pilot",
 					"hire date"
+				]
+			},
+			"pilot__was_trained_by__pilot": {
+				"_name": "pilot",
+				"pilot": [
+					"pilot",
+					"pilot"
 				]
 			}
 		}
