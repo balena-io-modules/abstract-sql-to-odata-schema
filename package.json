@@ -9,7 +9,7 @@
     "test": "mocha",
     "prepublish": "coffee -c AbstractSQL2ODataSchema.coffee"
   },
-  "repository": "git@bitbucket.org:rulemotion/abstract-sql-compiler.git",
+  "repository": "https://github.com/resin-io-modules/abstract-sql-compiler.git",
   "author": "",
   "dependencies": {
     "lodash": "^4.0.0"
