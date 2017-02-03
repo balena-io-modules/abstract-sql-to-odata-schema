@@ -48,20 +48,13 @@ module.exports = (sqlModel) ->
 				referenceScheme: resourceField
 				actions: ['view', 'add', 'delete']
 			switch table
-				when 'Attribute', 'ForeignKey'
+				when 'Attribute', 'ForeignKey', 'BooleanAttribute'
 					# person has age
 					# person: fk - id
 					# age: fk
-					resourceField = sqlFieldName = idParts[2].replace(/_/g, ' ')
-					sqlTableName = sqlTable.name
-					addMapping(resourceName, resourceField, sqlTableName, sqlFieldName)
-					resources[resourceName].fields.push(getField(sqlTable, sqlFieldName))
-					resources[resourceName].referenceScheme = resourceField
-				when 'BooleanAttribute'
-					# person is old
-					# person: fk - id
-					# is old: boolean
-					resourceField = sqlFieldName = idParts[1].replace(/_/g, ' ')
+					mappedParts = _(idParts).tail().without('has')
+					sqlFieldName = mappedParts.invokeMap('replace', /_/g, ' ').join('-')
+					resourceField = mappedParts.invokeMap('replace', /\ /g, '_').join('__')
 					sqlTableName = sqlTable.name
 					addMapping(resourceName, resourceField, sqlTableName, sqlFieldName)
 					resources[resourceName].fields.push(getField(sqlTable, sqlFieldName))
@@ -72,7 +65,7 @@ module.exports = (sqlModel) ->
 			resourceToSQLMappings[resourceName]._name = table.name
 			resources[resourceName] =
 				resourceName: resourceName
-				modelName: (part.replace(/_/g, ' ') for part in idParts).join(' ')
+				modelName: _(idParts).invokeMap('replace', /_/g, ' ').join(' ')
 				topLevel: idParts.length == 1
 				fields: table.fields
 				idField: table.idField
@@ -80,5 +73,5 @@ module.exports = (sqlModel) ->
 			if table.referenceScheme?
 				resources[resourceName].referenceScheme = table.referenceScheme
 			for { fieldName } in table.fields
-				addMapping(resourceName, fieldName.replace(/\ /g, '_'), table.name, fieldName)
+				addMapping(resourceName, fieldName.replace(/\ /g, '_').replace(/-/g, '__'), table.name, fieldName)
 	return { resources, resourceToSQLMappings }

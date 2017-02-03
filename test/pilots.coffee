@@ -201,7 +201,7 @@ describe 'pilots', ->
 					}
 				],
 				"idField": "team",
-				"referenceScheme": "favourite colour",
+				"referenceScheme": "favourite_colour",
 				"actions": [
 					"view",
 					"add",
@@ -391,7 +391,7 @@ describe 'pilots', ->
 					},
 					{
 						"dataType": "ForeignKey",
-						"fieldName": "team",
+						"fieldName": "is on-team",
 						"required": true,
 						"index": null,
 						"references": {
@@ -424,7 +424,7 @@ describe 'pilots', ->
 					},
 					{
 						"dataType": "ForeignKey",
-						"fieldName": "pilot",
+						"fieldName": "was trained by-pilot",
 						"required": true,
 						"index": null,
 						"references": {
@@ -468,7 +468,7 @@ describe 'pilots', ->
 					}
 				],
 				"idField": "pilot",
-				"referenceScheme": "is experienced",
+				"referenceScheme": "is_experienced",
 				"actions": [
 					"view",
 					"add",
@@ -573,7 +573,7 @@ describe 'pilots', ->
 					}
 				],
 				"idField": "pilot",
-				"referenceScheme": "favourite colour",
+				"referenceScheme": "favourite_colour",
 				"actions": [
 					"view",
 					"add",
@@ -649,7 +649,7 @@ describe 'pilots', ->
 					},
 					{
 						"dataType": "ForeignKey",
-						"fieldName": "team",
+						"fieldName": "is on-team",
 						"required": true,
 						"index": null,
 						"references": {
@@ -660,7 +660,7 @@ describe 'pilots', ->
 					}
 				],
 				"idField": "pilot",
-				"referenceScheme": "team",
+				"referenceScheme": "is_on__team",
 				"actions": [
 					"view",
 					"add",
@@ -730,7 +730,7 @@ describe 'pilots', ->
 					}
 				],
 				"idField": "pilot",
-				"referenceScheme": "hire date",
+				"referenceScheme": "hire_date",
 				"actions": [
 					"view",
 					"add",
@@ -754,7 +754,8 @@ describe 'pilots', ->
 					},
 					{
 						"dataType": "ForeignKey",
-						"fieldName": "pilot",
+						# Unsure if this is correct
+						"fieldName": "was trained by-pilot",
 						"required": true,
 						"index": null,
 						"references": {
@@ -765,7 +766,7 @@ describe 'pilots', ->
 					}
 				],
 				"idField": "pilot",
-				"referenceScheme": "pilot",
+				"referenceScheme": "was_trained_by__pilot",
 				"actions": [
 					"view",
 					"add",
@@ -817,7 +818,7 @@ describe 'pilots', ->
 					"team",
 					"favourite colour"
 				],
-				"favourite colour": [
+				"favourite_colour": [
 					"team",
 					"favourite colour"
 				]
@@ -889,9 +890,9 @@ describe 'pilots', ->
 					"pilot",
 					"favourite colour"
 				],
-				"team": [
+				"is_on__team": [
 					"pilot",
-					"team"
+					"is on-team"
 				],
 				"licence": [
 					"pilot",
@@ -901,9 +902,9 @@ describe 'pilots', ->
 					"pilot",
 					"hire date"
 				],
-				"pilot": [
+				"was_trained_by__pilot": [
 					"pilot",
-					"pilot"
+					"was trained by-pilot"
 				]
 			},
 			"pilot__is_experienced": {
@@ -912,7 +913,7 @@ describe 'pilots', ->
 					"pilot",
 					"id"
 				],
-				"is experienced": [
+				"is_experienced": [
 					"pilot",
 					"is experienced"
 				]
@@ -945,7 +946,7 @@ describe 'pilots', ->
 					"pilot",
 					"id"
 				],
-				"favourite colour": [
+				"favourite_colour": [
 					"pilot",
 					"favourite colour"
 				]
@@ -975,9 +976,9 @@ describe 'pilots', ->
 					"pilot",
 					"id"
 				],
-				"team": [
+				"is_on__team": [
 					"pilot",
-					"team"
+					"is on-team"
 				]
 			},
 			"pilot__has__licence": {
@@ -997,7 +998,7 @@ describe 'pilots', ->
 					"pilot",
 					"id"
 				],
-				"hire date": [
+				"hire_date": [
 					"pilot",
 					"hire date"
 				]
@@ -1006,7 +1007,11 @@ describe 'pilots', ->
 				"_name": "pilot",
 				"pilot": [
 					"pilot",
-					"pilot"
+					"id"
+				],
+				"was_trained_by__pilot": [
+					"pilot",
+					"was trained by-pilot"
 				]
 			}
 		}

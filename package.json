@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@resin/abstract-sql-compiler": "^1.1.0",
-    "@resin/lf-to-abstract-sql": "0.0.17",
+    "@resin/lf-to-abstract-sql": "1.0.0",
     "@resin/sbvr-parser": "0.0.23",
     "@resin/sbvr-types": "^1.1.1",
     "chai": "^3.0.0",
