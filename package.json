@@ -1,6 +1,6 @@
 {
   "name": "@resin/abstract-sql-to-odata-schema",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A translator for abstract sql into an odata schema.",
   "main": "AbstractSQL2ODataSchema.js",
   "scripts": {
