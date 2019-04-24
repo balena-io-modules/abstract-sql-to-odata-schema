@@ -1,5 +1,5 @@
 {
-  "name": "@resin/abstract-sql-to-odata-schema",
+  "name": "@balena.io/abstract-sql-to-odata-schema",
   "version": "1.1.1",
   "description": "A translator for abstract sql into an odata schema.",
   "main": "AbstractSQL2ODataSchema.js",
@@ -15,10 +15,10 @@
     "lodash": "^4.0.0"
   },
   "devDependencies": {
-    "@resin/abstract-sql-compiler": "^1.1.0",
-    "@resin/lf-to-abstract-sql": "0.0.17",
-    "@resin/sbvr-parser": "0.0.23",
-    "@resin/sbvr-types": "^1.1.1",
+    "@balena.io/abstract-sql-compiler": "^1.1.0",
+    "@balena.io/lf-to-abstract-sql": "0.0.17",
+    "@balena.io/sbvr-parser": "0.0.23",
+    "@balena.io/sbvr-types": "^1.1.1",
     "chai": "^3.0.0",
     "coffee-script": "~1.10.0",
     "mocha": "^2.1.0",
